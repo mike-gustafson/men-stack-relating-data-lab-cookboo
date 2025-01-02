@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+  <h1>Welcome to YOUR Pantry!</h1>
+
+  <% if (foods.length > 0) { %>
+    <h3>Your Food</h3>
+    <ul>
+      <% foods.forEach(function(food) { %>
+        <li>
+            <a href = "/users/<%= user._id %>/foods/<%= food._id %>"><%= food.name %></a> - <%= food.quantity %>
+            <form action="/users/<%= user._id %>/foods/<%= food._id %>?_method=DELETE" method="POST">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+      <% }) %>
+      </ul>
+  <% } else { %>
+    <p>No foods in your pantry yet!</p>
+  <% } %>
+  <a href="/users/<%= user._id %>/foods/new">Add Food</a>
+</body>
+</html>

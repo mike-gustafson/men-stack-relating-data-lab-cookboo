@@ -35,8 +35,8 @@ router.post('/sign-up', async (req, res) => {
     const hashedPassword = bcrypt.hashSync(req.body.password, 10);
     req.body.password = hashedPassword;
   
-    // All ready to create the new user!
-    await User.create(req.body);
+    const newUser = new User(req.body);
+    await newUser.save();
   
     res.redirect('/auth/sign-in');
   } catch (error) {
@@ -70,7 +70,7 @@ router.post('/sign-in', async (req, res) => {
       _id: userInDatabase._id
     };
   
-    res.redirect('/');
+    res.redirect('/users/' + userInDatabase._id + '/foods');
   } catch (error) {
     console.log(error);
     res.redirect('/');
