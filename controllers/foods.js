@@ -24,7 +24,6 @@ router.get('/new', (req, res) => {
 
 router.post('/', async (req, res) => {
     const userId = req.session.user._id;
-    console.log(req.body);
     const food = {
         name: req.body.name,
         quantity: req.body.quantity,
