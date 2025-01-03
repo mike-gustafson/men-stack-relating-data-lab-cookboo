@@ -7,8 +7,9 @@ router.get('/', async (req, res) => {
     const userId = req.session.user._id;
     try {
         const user = await User.findById(userId);
+        const foods = user.pantry;
         res.render('foods/index.ejs', {
-            foods: user.pantry,
+            foods
         });
     }
     catch (error) {
@@ -41,16 +42,36 @@ router.post('/', async (req, res) => {
     }
 });
 
-router.get('/:id', (req, res) => {
-    res.render('foods/show.ejs');
+router.get('/:id', async (req, res) => {
+    const userId = req.session.user._id;
+    const foodId = req.params.id;
+    try {
+        const user = await User.findById(userId);
+        const food = user.pantry.id(foodId);
+        res.render('foods/show.ejs', { food });
+    }
+    catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
 });
 
-router.get('/:id/edit', (req, res) => {
-    res.render('foods/edit.ejs');
+router.get('/:id/edit', async (req, res) => {
+    const userId = req.session.user._id;
+    const foodId = req.params.id;
+    try {
+        const user = await User.findById(userId);
+        const food = user.pantry.id(foodId);
+        res.render('foods/edit.ejs', { food });
+    }
+    catch (error) {
+        console.log(error);
+        res.redirect('/');
+    }
 });
 
 router.put('/:id', async (req, res) => {
-    const userId = req.session.user.id;
+    const userId = req.session.user._id;
     const foodId = req.params.id;
 
     try {

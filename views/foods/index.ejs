@@ -16,9 +16,6 @@
       <% foods.forEach(function(food) { %>
         <li>
             <a href = "/users/<%= user._id %>/foods/<%= food._id %>"><%= food.name %></a> - <%= food.quantity %>
-            <form action="/users/<%= user._id %>/foods/<%= food._id %>?_method=DELETE" method="POST">
-                <button type="submit">Delete</button>
-            </form>
         </li>
       <% }) %>
       </ul>

@@ -2,6 +2,9 @@
     <a href="/">Home</a>
     <% if(user) { %>
     <a href="/users/<%=user._id%>/foods">View my Pantry</a>
+    <a href="/users/">View all Users</a>
+    <a href="/recipes">View Recipes</a>
+    <a href="/ingredients">View Ingredients</a>
     <a href="/auth/sign-out">Sign Out</a>
     <% } else { %>
     <a href="/auth/sign-in">Sign In</a>

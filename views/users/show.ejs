@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingredient Details</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+<h1>Panty for <%= user.username %></h1>
+
+<ul>
+    <% user.foods.forEach(function(food) { %>
+        <li>
+        <p>Food: <%= food.name %></p>
+        <p>Quantity: <%= food.quantity %></p>
+        </li>
+    <% }) %>
+    <a href="/users">Back to Users</a>
+</ul>
+</body>
+</html>

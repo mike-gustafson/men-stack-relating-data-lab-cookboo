@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up</title>
+</head>
+<body>
+  <%- include('../partials/_navbar.ejs') %>
+
+<h1>Edit Food</h1>
+<form action="/users/<%= user._id %>/foods/<%= food._id %>?_method=PUT" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" name="name" id="name" value="<%= food.name %>" required />
+  <label for="quantity">Quantity:</label>
+  <input type="number" name="quantity" id="quantity" value="<%= food.quantity %>" required />
+  <button type="submit">Edit Food</button>
+</form>
+<button onclick="window.location.href='/users/<%= user._id %>/foods'">Back to Pantry</button>
+</body>
